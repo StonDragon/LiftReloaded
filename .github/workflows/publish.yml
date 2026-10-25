@@ -17,10 +17,10 @@ jobs:
           VERSION="${TAG_NAME#lift-reloaded-parent-}"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Set up Java 21
+      - name: Set up Java 25
         uses: actions/setup-java@v4
         with:
-          java-version: 21
+          java-version: 25
           distribution: temurin
           cache: maven
 
@@ -45,7 +45,7 @@ jobs:
           changelog: ${{ github.event.release.body }}
           files: lift-reloaded-spigot/target/lift-reloaded-spigot-${{ steps.extract_version.outputs.version }}.jar
           loaders: '["bukkit", "spigot"]'
-          game-versions: '["1.21.10"]'
+          game-versions: '["26.2"]'
 
       - name: Publish to Modrinth (Paper)
         uses: cloudnode-pro/modrinth-publish@v2
@@ -57,4 +57,4 @@ jobs:
           changelog: ${{ github.event.release.body }}
           files: lift-reloaded-paper/target/lift-reloaded-paper-${{ steps.extract_version.outputs.version }}.jar
           loaders: '["paper"]'
-          game-versions: '["1.21.10"]'
+          game-versions: '["26.2"]'

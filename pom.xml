@@ -4,11 +4,11 @@
 
     <groupId>io.liftreloaded</groupId>
     <artifactId>lift-reloaded-parent</artifactId>
-    <version>2.6.2-SNAPSHOT</version>
+    <version>2.7.0</version>
     <packaging>pom</packaging>
 
     <name>LiftReloaded</name>
-    <description>Simple and easy Lifts and Elevators for Bukkit</description>
+    <description>Simple, realistic elevators for Minecraft 26.2 on Paper and Spigot</description>
     <url>https://github.com/kikelkik/LiftReloaded</url>
     <modules>
         <module>lift-reloaded-core</module>
@@ -24,15 +24,24 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>21</java.version>
-        <api.version>1.21.10</api.version>
+        <java.version>25</java.version>
+        <api.version>26.2</api.version>
+        <spigot.api.version>26.2-R0.1-SNAPSHOT</spigot.api.version>
+        <paper.api.version>26.2.build.135-stable</paper.api.version>
+        <lombok.version>1.18.48</lombok.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>${api.version}-R0.1-SNAPSHOT</version>
+            <version>${spigot.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -53,18 +62,32 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <version>3.16.0</version>
                 <configuration>
                     <release>${java.version}</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.5.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>3.5.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
+                <version>3.3.1</version>
             </plugin>
         </plugins>
 
@@ -73,12 +96,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>3.5.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.6.1</version>
+                    <version>3.6.2</version>
                     <executions>
                         <execution>
                             <phase>package</phase>

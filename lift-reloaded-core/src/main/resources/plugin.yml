@@ -1,8 +1,9 @@
-author: croxis, kikelkik
+authors: [croxis, kikelkik]
 main: io.liftreloaded.LiftPlugin
 name: LiftReloaded
 version: ${project.version}
-description: Simple and realistic elevators
+description: Simple, realistic elevators for Minecraft 26.2
+website: https://github.com/kikelkik/LiftReloaded
 softdepend: [NoCheatPlus, NoteBlockAPI]
 permissions:
   lift:
@@ -16,7 +17,7 @@ permissions:
     default: op
 commands:
    lift:
-      description: Scans a lift.
+      description: Scans or reloads LiftReloaded.
       usage: /<command>
       permission: lift
       permission-message: You don't have lift permissions
